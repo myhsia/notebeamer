@@ -110,10 +110,11 @@ Copyright and License
 %
 % \section{Introduction}
 %
-% The \pkg{notebeamer} package provides an easy way to input slides on notepages
-% quickly for making annotations, based on \pkg{expl3} and \pkg{tikz}. It is
-% compatible with \hologo{TeX} Live 2019 or later distributions, they all work
-% fine for \hologo{pdfLaTeX}, \hologo{XeLaTeX} and \hologo{LuaLaTeX}.
+% The \pkg{notebeamer} package provides an easy way to input slides on note
+% pages quickly for making annotations, developed by \pkg{expl3} based on
+% \pkg{tikz} and \pkg{l3graphics}. It is compatible with \hologo{TeX} Live 2019
+% or later distributions and supports compilation methods such as
+% \hologo{pdfLaTeX}, \hologo{XeLaTeX}, and \hologo{LuaLaTeX}, etc.
 %
 % \section{Usage}
 %
@@ -128,8 +129,8 @@ Copyright and License
 %   \end{syntax}
 %   The \cs{includebeamer} command can create pages with note lines, and import
 %   the specific pages of the \file{.pdf} file on the left side of the note
-%   pages. The optional argument accepts the following keys, and the mandatory
-%   argument can set the \file{.pdf} file that you want to insert.
+%   pages. The mandatory argument can set the \file{.pdf} file that will be
+%   inserted. The optional argument accepts the following keys
 %   \begin{description}[leftmargin = 0pt]
 %     \item [\keyval{color}{string}] can set the color of the note lines
 %     (Default: \cmd{black}), key's name could be omitted.
@@ -166,9 +167,9 @@ Copyright and License
 %
 % \begin{implementation}
 %
-% \section{The source code}
+% \section{The Source Code}
 %
-% \linespread{1.1}
+% \linespread{1.15}
 %
 %    \begin{macrocode}
 %<*package>
@@ -185,7 +186,7 @@ Copyright and License
 \RequirePackage{l3graphics, tikz, tikzpagenodes}
 %    \end{macrocode}
 %
-% \subsection{User's interface}
+% \subsection{User's Interface}
 %
 % \DescribeMacro{\includebeamer}
 % Define the \cs{includebeamer} command.
@@ -223,7 +224,7 @@ Copyright and License
   }
 %    \end{macrocode}
 % \newpage
-% \subsection{Internal auxiliary}
+% \subsection{Internal Auxiliary}
 %
 % \begin{variable}{\l__nb_nup_dim,\l__includebm_ratio_dim}
 %   Store the heights and widths of the logical pages in a specific nup.
@@ -388,3 +389,5 @@ Copyright and License
 % \end{implementation}
 %
 \endinput
+%%
+%% End of file `notebeamer.dtx'
