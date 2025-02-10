@@ -1,13 +1,35 @@
-# The `notebeamer` package
+# notebeamer
 
-This package provides macros for inputting slides on note papers quickly.
+The `notebeamer` package provides a method for inputting slides on note
+papers quickly.
 
-**Welcome to pull requests [here](https://github.com/xiamyphys/notebeamer/pulls).**
+Basic Usage
+-----------
 
-## License
+The package provides the `\includebeamer` macro
 
-This work may be distributed and/or modified under the conditions of the [LaTeX Project Public License](http://www.latex-project.org/lppl.txt), either version 1.3c of this license or (at your option) any later version.
+    \includebeamer [<keyvals>] {<filename>} [<keyvals>]
 
-This work has the LPPL maintenance status `maintained`.
+to set the format that how the slides is arranged on note papers.
 
-The Current Maintainer of this work is [Mingyu Xia](https://www.ctan.org/author/xia-my).
+See `notebeamer.pdf` for more. Happy TeXing!
+
+Copyright and License
+---------------------
+
+  Copyright (C) 2023-2025 by Mingyu Xia <myhsia@outlook.com>
+
+  It may be distributed and/or modified under the conditions of the
+  LaTeX Project Public License (LPPL), either version 1.3c of this
+  license or (at your option) any later version. The latest version
+  of this license is in the file
+      http://www.latex-project.org/lppl.txt
+  This work has the LPPL maintenance status `maintained'.
+
+  The Current Maintainer of this work is Mingyu Xia.
+
+  This work consists of the files notebeamer.dtx,
+            and the derived files notebeamer.ins,
+                                  notebeamer.sty,
+                                  notebeamer.pdf,
+                              and README.md (this file).
