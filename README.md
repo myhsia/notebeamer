@@ -24,7 +24,7 @@ Copyright and License
   license or (at your option) any later version. The latest version
   of this license is in the file
       http://www.latex-project.org/lppl.txt
-  This work has the LPPL maintenance status `maintained'.
+  This work has the LPPL maintenance status `maintained`.
 
   The Current Maintainer of this work is Mingyu Xia.
 
