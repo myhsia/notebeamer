@@ -1,0 +1,180 @@
+%%
+%% This is file `notebeamer.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% notebeamer.dtx  (with options: `package')
+%% -----------------------------------------------------------------------
+%%   Copyright (C) 2023-2025 by Mingyu Xia <myhsia@outlook.com>          *
+%%                                                                       *
+%%   It may be distributed and/or modified under the conditions of the   *
+%%   LaTeX Project Public License (LPPL), either version 1.3c of this    *
+%%   license or (at your option) any later version. The latest version   *
+%%   of this license is in the file                                      *
+%%                                                                       *
+%%       http://www.latex-project.org/lppl.txt                           *
+%%                                                                       *
+%%   This work has the LPPL maintenance status `maintained'.             *
+%%                                                                       *
+%%   The Current Maintainer of this work is Mingyu Xia.                  *
+%% -----------------------------------------------------------------------
+\RequirePackage{expl3, xparse}
+\ProvidesExplPackage {notebeamer} {2025-02-28} {v4.1A}
+  {Package provides macros for inputting slides on note papers quickly.}
+\RequirePackage{l3graphics, tikz, tikzpagenodes}
+\NewDocumentCommand \includebeamer { O{} m O{} }
+  {
+    \group_begin:
+    \keys_set:nn { notebeamer / includebeamer } { #1, #3 }
+    \__ntbm_include_aux:n {#2}
+    \group_end:
+  }
+\keys_define:nn { notebeamer / includebeamer }
+  {
+    color   .tl_set:N  = \__ntbm_include_color_tl,
+      color .initial:n = black,
+    pages   .tl_set:N  = \__ntbm_include_pages_tl,
+      pages .initial:n = 1,
+    nup     .int_set:N = \__ntbm_include_nup_int,
+      nup   .initial:n = 3,
+    lines   .int_set:N = \__ntbm_include_lines_int,
+    ratio   .fp_set:N  = \__ntbm_include_ratio_fp,
+      ratio .initial:n = .5,
+    sep     .dim_set:N = \__ntbm_include_sep_dim,
+      sep   .initial:n = 2ex,
+    lhead   .tl_set:N  = \__ntbm_include_lhead_tl,
+    rhead   .tl_set:N  = \__ntbm_include_rhead_tl,
+    unknown .code:n    = \tl_if_novalue:nF {#1}
+      { \tl_set_eq:NN \__ntbm_include_color_tl \l_keys_key_tl }
+  }
+\dim_new:N \__ntbm_nup_dim
+\dim_new:N \__ntbm_include_ratio_dim
+\int_new:N \__ntbm_pages_total_int
+\int_new:N \__ntbm_pages_residue_int
+\clist_new:N \__ntbm_tmpa_clist
+\cs_new_protected_nopar:Npn \__ntbm_include_aux:n #1
+  {
+    \graphics_get_pagecount:nN {#1} \__ntbm_include_filepages_int
+    \dim_set:Nn \__ntbm_nup_dim { \textheight/\__ntbm_include_nup_int }
+    \dim_set:Nn \__ntbm_include_ratio_dim
+      { \fp_use:N \__ntbm_include_ratio_fp \textwidth }
+    \tl_if_eq:NnTF \__ntbm_include_pages_tl { - }
+      {
+        \__ntbm_range_to_list:nN
+          { 1 - \__ntbm_include_filepages_int } \__ntbm_tmpa_clist
+      }
+      {
+        \exp_args:NV \__ntbm_range_to_list:nN
+          { \__ntbm_include_pages_tl } \__ntbm_tmpa_clist
+      }
+    \int_set:Nn \__ntbm_pages_total_int
+      {
+        \fp_eval:n
+          { ceil
+              ( \clist_count:N \__ntbm_tmpa_clist/
+                  \__ntbm_include_nup_int,0
+              ) - 1
+          }
+      }
+    \int_set:Nn \__ntbm_pages_residue_int
+      {
+        \int_eval:n
+          {
+            \clist_count:N \__ntbm_tmpa_clist -
+            \__ntbm_include_nup_int * \__ntbm_pages_total_int
+          }
+      }
+    \int_step_inline:nn { \int_use:N \__ntbm_pages_total_int }
+      {
+        \clearpage
+        \__ntbm_empty_note_aux:
+        \int_step_inline:nn { \__ntbm_include_nup_int }
+          {
+            \tikz [ remember~picture, overlay ]
+              \node [ xshift = \__ntbm_include_ratio_dim/2,
+                      yshift = \fp_eval:n { -####1 + .5 } \__ntbm_nup_dim
+                    ] at (current~page~text~area.north~west)
+                {
+                  \includegraphics
+                    [ height = \dim_eval:n
+                        { \__ntbm_nup_dim - \__ntbm_include_sep_dim },
+                      page = \clist_item:Nn \__ntbm_tmpa_clist
+                        { ####1 + \__ntbm_include_nup_int * ( ##1 - 1 ) }
+                    ] {#1}
+                };
+          }
+        \clearpage
+      }
+    \__ntbm_empty_note_aux:
+    \int_step_inline:nn { \int_use:N \__ntbm_pages_residue_int }
+      {
+        \tikz [ remember~picture, overlay ]
+          \node [ xshift = \__ntbm_include_ratio_dim/2,
+                  yshift = \fp_eval:n {( -##1 + .5 )} \__ntbm_nup_dim
+                ] at (current~page~text~area.north~west)
+            {
+              \includegraphics
+                [ height = \dim_eval:n
+                    { \__ntbm_nup_dim - \__ntbm_include_sep_dim },
+                  page = \clist_item:Nn \__ntbm_tmpa_clist
+                    {
+                      \__ntbm_include_nup_int *
+                      \__ntbm_pages_total_int + ##1
+                    }
+                ] {#1}
+            };
+      }
+    \clearpage
+  }
+\cs_new_protected_nopar:Nn \__ntbm_empty_note_aux:
+  {
+    \tikzpicture [ remember~picture, overlay ]
+      \draw [ very~thick, \__ntbm_include_color_tl!80 ]
+        (current~page~text~area.north~west) --
+        (current~page~text~area.north~east)
+       node [ at~start, above~right, font = \Large \bfseries ]
+        { \__ntbm_include_lhead_tl }
+       node [ above~left, font = \Large \bfseries ]
+        { \__ntbm_include_rhead_tl };
+      \draw [ very~thick, \__ntbm_include_color_tl!80 ]
+        (current~page~text~area.south~west) --
+        (current~page~text~area.south~east);
+      \int_step_inline:nn { \__ntbm_include_lines_int - 1 }
+        {
+          \draw [ thick, \__ntbm_include_color_tl!60 ]
+            ([xshift = \__ntbm_include_ratio_dim,
+              yshift = -\textheight/\__ntbm_include_lines_int * ##1
+             ]current~page~text~area.north~west) --++
+            (\dim_eval:n { \textwidth - \__ntbm_include_ratio_dim },0);
+        }
+    \endtikzpicture
+    \pagestyle{empty}
+  }
+\seq_new:N \__ntbm_tmpa_seq
+\seq_new:N \__ntbm_tmpb_seq
+\cs_new_protected_nopar:Npn \__ntbm_range_to_list:nN #1#2
+  {
+    \clist_clear:N #2
+    \seq_set_split:Nnn \__ntbm_tmpa_seq { , } {#1}
+    \seq_map_inline:Nn \__ntbm_tmpa_seq
+      {
+        \tl_if_in:nnTF {##1} { - }
+          {
+            \seq_set_split:Nnn \__ntbm_tmpb_seq { - } {##1}
+            \int_step_inline:nnn
+              { \seq_item:Nn \__ntbm_tmpb_seq { 1 } }
+              { \seq_item:Nn \__ntbm_tmpb_seq { 2 } }
+              { \clist_put_right:Nn #2 {####1} }
+           } { \clist_put_right:Nn #2 {##1} }
+      }
+  }
+%% -----------------------------------------------------------------------
+%%   This work consists of the files notebeamer.dtx,                     *
+%%                               and notebeamer.ins,                     *
+%%             and the derived files notebeamer.sty,                     *
+%%                                   notebeamer.pdf,                     *
+%%                               and README.md.                          *
+%% -----------------------------------------------------------------------
+%%
+%% End of file `notebeamer.sty'.

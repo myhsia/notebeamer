@@ -1,10 +1,11 @@
-# notebeamer
+The `notebeamer` Package
+============
 
 The `notebeamer` package provides a method for inputting slides on note
 papers quickly.
 
-Basic Usage
------------
+Overview
+--------
 
 The package provides the `\includebeamer` macro
 
@@ -14,6 +15,12 @@ to set the format that how the slides is arranged on note papers.
 
 See `notebeamer.pdf` for more. Happy TeXing!
 
+Issues
+------
+
+The issue tracker for `notebeamer` is currently located
+[on GitHub](https://github.com/myhsia/notebeamer/issues).
+
 Copyright and License
 ---------------------
 
@@ -22,14 +29,8 @@ Copyright and License
   It may be distributed and/or modified under the conditions of the
   LaTeX Project Public License (LPPL), either version 1.3c of this
   license or (at your option) any later version. The latest version
-  of this license is in the file
-      http://www.latex-project.org/lppl.txt
+  of this license is in the file <http://www.latex-project.org/lppl.txt>
+
   This work has the LPPL maintenance status `maintained`.
 
   The Current Maintainer of this work is Mingyu Xia.
-
-  This work consists of the files notebeamer.dtx,
-            and the derived files notebeamer.ins,
-                                  notebeamer.sty,
-                                  notebeamer.pdf,
-                              and README.md (this file).
