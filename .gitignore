@@ -1,3 +1,6 @@
 .DS_Store
-notebeamer.tar.gz
+.tar.gz
+.sty
+.cls
+.code.tex
 latexmkrc
