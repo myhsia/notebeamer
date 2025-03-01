@@ -33,7 +33,7 @@
 %
 %<*readme>
 The `notebeamer` Package
-============
+========================
 
 The `notebeamer` package provides a method for inputting slides on note
 papers quickly.
@@ -78,7 +78,7 @@ Copyright and License
 \RequirePackage{expl3, xparse}
 %</driver|package>
 %<*driver>
-\documentclass[svgnames,onlydoc]{l3doc}
+\documentclass[svgnames, onlydoc]{l3doc}
 \usepackage[pass]{geometry}
 \usepackage{notebeamer}
 \AddToHook{env/function/before}{\vspace*{-.65\baselineskip}}
@@ -86,7 +86,7 @@ Copyright and License
 \makeatletter
 \def \@key #1{\textcolor{red}{\textbf{\texttt{#1}}} \normalfont \texttt{=}}
 \def \s@key #1{\textcolor{red}{\textbf{\texttt{#1}}}}
-\DeclareRobustCommand \key {\@ifstar\s@key\@key}
+\DeclareRobustCommand \key{\@ifstar\s@key\@key}
 \def \val #1{\meta{\textup{#1}}}
 \def \HoLogo@ApTeX #1{\HOLOGO@mbox {Ap\kern -.1667em\TeX}}
 \makeatother
@@ -109,7 +109,7 @@ Copyright and License
 %   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}^^A
 % }
 %
-% \date{Released 2025-02-28\quad \texttt{v4.1A}}
+% \date{Released 2025-03-01\quad \texttt{v4.1B}}
 %
 % \maketitle
 %
@@ -186,7 +186,7 @@ Copyright and License
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-02-28} {v4.1A}
+\ProvidesExplPackage {notebeamer} {2025-03-01} {v4.1B}
   {Package provides macros for inputting slides on note papers quickly.}
 %    \end{macrocode}
 %
@@ -197,7 +197,7 @@ Copyright and License
 % \subsection{User's Interface}
 %
 % \begin{macro}{\includebeamer}
-% Define the \cs{includebeamer} command.
+%   Define the \cs{includebeamer} command.
 %    \begin{macrocode}
 \NewDocumentCommand \includebeamer { O{} m O{} }
   {
@@ -207,14 +207,14 @@ Copyright and License
     \group_end:
   }
 %    \end{macrocode}
-%   \begin{variable}
-%     {
-%       \l_@@_include_color_tl, \l_@@_include_pages_tl,
-%       \l_@@_include_nup_int,  \l_@@_include_lines_int,
-%       \l_@@_include_ratio_fp, \l_@@_include_sep_dim,
-%       \l_@@_include_lhead_tl, \l_@@_include_rhead_tl
-%     }
-% Key--value definitions for the \cs{includebeamer} command.
+% \begin{variable}
+%   {
+%     \l_@@_include_color_tl , \l_@@_include_pages_tl  ,
+%     \l_@@_include_nup_int  , \l_@@_include_lines_int ,
+%     \l_@@_include_ratio_fp , \l_@@_include_sep_dim   ,
+%     \l_@@_include_lhead_tl , \l_@@_include_rhead_tl
+%   }
+%   Key--value definitions for the \cs{includebeamer} command.
 %    \begin{macrocode}
 \keys_define:nn { notebeamer / includebeamer }
   {
@@ -240,7 +240,7 @@ Copyright and License
 %
 % \subsection{Internal Auxiliary}
 %
-% \begin{variable}{\l_@@_nup_dim,\l_@@_include_ratio_dim}
+% \begin{variable}{\l_@@_nup_dim, \l_@@_include_ratio_dim}
 %   Store the heights and widths of the logical pages in a specific nup.
 %    \begin{macrocode}
 \dim_new:N \l_@@_nup_dim
@@ -248,7 +248,7 @@ Copyright and License
 %    \end{macrocode}
 % \end{variable}
 % \newpage
-% \begin{variable}{\l_@@_pages_total_int,\l_@@_pages_residue_int}
+% \begin{variable}{\l_@@_pages_total_int, \l_@@_pages_residue_int}
 %   Store the number of total physical pages and residue logical pages.
 %    \begin{macrocode}
 \int_new:N \l_@@_pages_total_int
@@ -373,7 +373,7 @@ Copyright and License
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{variable}{\l_@@_tmpa_seq,\l_@@_tmpb_seq}
+% \begin{variable}{\l_@@_tmpa_seq, \l_@@_tmpb_seq}
 %   Store the results of 2D array segmentation.
 %    \begin{macrocode}
 \seq_new:N \l_@@_tmpa_seq
@@ -388,14 +388,14 @@ Copyright and License
   {
     \clist_clear:N #2
     \seq_set_split:Nnn \l_@@_tmpa_seq { , } {#1}
-    \seq_map_inline:Nn \l_@@_tmpa_seq 
+    \seq_map_inline:Nn \l_@@_tmpa_seq
       {
         \tl_if_in:nnTF {##1} { - }
           {
             \seq_set_split:Nnn \l_@@_tmpb_seq { - } {##1}
-            \int_step_inline:nnn 
-              { \seq_item:Nn \l_@@_tmpb_seq { 1 } } 
-              { \seq_item:Nn \l_@@_tmpb_seq { 2 } } 
+            \int_step_inline:nnn
+              { \seq_item:Nn \l_@@_tmpb_seq { 1 } }
+              { \seq_item:Nn \l_@@_tmpb_seq { 2 } }
               { \clist_put_right:Nn #2 {####1} }
            } { \clist_put_right:Nn #2 {##1} }
       }

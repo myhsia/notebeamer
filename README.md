@@ -1,5 +1,5 @@
 The `notebeamer` Package
-============
+========================
 
 The `notebeamer` package provides a method for inputting slides on note
 papers quickly.
