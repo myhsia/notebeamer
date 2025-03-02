@@ -84,11 +84,15 @@ Copyright and License
 \AddToHook{env/function/before}{\vspace*{-.65\baselineskip}}
 \AddToHook{env/syntax/after}{\vspace*{.15\baselineskip}}
 \makeatletter
-\def \@key #1{\textcolor{red}{\textbf{\texttt{#1}}} \normalfont \texttt{=}}
+\def \@key #1{\textcolor{red}{\textbf{\texttt{#1}}}~\normalfont \texttt{=}~}
 \def \s@key #1{\textcolor{red}{\textbf{\texttt{#1}}}}
-\DeclareRobustCommand \key{\@ifstar\s@key\@key}
+\DeclareRobustCommand \key {\@ifstar\s@key\@key}
 \def \val #1{\meta{\textup{#1}}}
+\def \TFF {true\textbar \textbf{false}}
+\def \TTF {\textbf{true}\textbar false}
 \def \HoLogo@ApTeX #1{\HOLOGO@mbox {Ap\kern -.1667em\TeX}}
+\newlist{keyval}{itemize}{10}
+\setlist[keyval]{leftmargin = 0pt, labelsep = 0pt}
 \makeatother
 \makeindex
 \begin{document}
@@ -109,7 +113,7 @@ Copyright and License
 %   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}^^A
 % }
 %
-% \date{Released 2025-03-01\quad \texttt{v4.1B}}
+% \date{Released 2025-03-02\quad \texttt{v4.1C}}
 %
 % \maketitle
 %
@@ -138,7 +142,7 @@ Copyright and License
 %   the specific pages of the \file{.pdf} file on the left side of the note
 %   pages. The mandatory argument can set the \file{.pdf} file that will be
 %   inserted. The optional argument accepts the following keys
-%   \begin{itemize}[leftmargin = 0pt]
+%   \begin{keyval}
 %     \item [\key{color}] \val{str} can set the note lines' color
 %     (Default: black), this key's name could be omitted.
 %     \item [\key{ratio}] \val{fp num} can set imported slides' ratio and empty
@@ -152,7 +156,7 @@ Copyright and License
 %     (Default: |1|).
 %     \item [\key{lhead, rhead}] \val{str} can set the left / right header of
 %     the pages.
-%   \end{itemize}
+%   \end{keyval}
 % \end{function}
 %
 % Additionally, \cs[no-index]{newgeometry} could be used for assistance. Such as
@@ -186,7 +190,7 @@ Copyright and License
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-03-01} {v4.1B}
+\ProvidesExplPackage {notebeamer} {2025-03-02} {v4.1C}
   {Package provides macros for inputting slides on note papers quickly.}
 %    \end{macrocode}
 %
