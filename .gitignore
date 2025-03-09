@@ -4,3 +4,4 @@
 .code.tex
 latexmkrc
 notebeamer.tar.gz
+build.lua
