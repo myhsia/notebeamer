@@ -90,7 +90,8 @@ Copyright and License
 \def \val #1{\meta{\textup{#1}}}
 \def \TFF {true\textbar \textbf{false}}
 \def \TTF {\textbf{true}\textbar false}
-\def \HoLogo@ApTeX #1{\HOLOGO@mbox {Ap\kern -.1667em\TeX}}
+\def \HoLogo@ApLaTeX #1^^A
+  {\HOLOGO@mbox {A\kern -.05em p\kern -.05em \hologo{LaTeX}}}
 \newlist{keyval}{itemize}{10}
 \setlist[keyval]{leftmargin = 0pt, labelsep = 0pt}
 \makeatother
@@ -113,7 +114,7 @@ Copyright and License
 %   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}^^A
 % }
 %
-% \date{Released 2025-03-09\quad \texttt{v4.1D}}
+% \date{Released 2025-03-12\quad \texttt{v4.1E}}
 %
 % \maketitle
 %
@@ -125,7 +126,7 @@ Copyright and License
 % pages quickly, developed by \pkg{expl3} based on \pkg{tikz} and
 % \pkg{l3graphics}. It is compatible with \hologo{TeX} Live 2019 or later
 % distributions and supports various compilation methods, such as
-% \hologo{pdfLaTeX}, \hologo{XeLaTeX}, \hologo{ApTeX}, \hologo{LuaLaTeX}, etc.
+% \hologo{pdfLaTeX}, \hologo{XeLaTeX}, \hologo{ApLaTeX}, \hologo{LuaLaTeX}, etc.
 %
 % \section{Usage}
 %
@@ -190,7 +191,7 @@ Copyright and License
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-03-09} {v4.1D}
+\ProvidesExplPackage {notebeamer} {2025-03-12} {v4.1E}
   {Package provides macros for inputting slides on note papers quickly.}
 %    \end{macrocode}
 %

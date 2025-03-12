@@ -1,7 +1,5 @@
 .DS_Store
-.sty
-.cls
-.code.tex
-latexmkrc
-notebeamer.tar.gz
-build.lua
+/build/
+*.tar.gz
+*.zip
+*.curlopt
