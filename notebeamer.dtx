@@ -74,9 +74,6 @@ Copyright and License
 \fi
 %</internal>
 %
-%<*driver|package>
-\RequirePackage{expl3, xparse}
-%</driver|package>
 %<*driver>
 \documentclass[svgnames, onlydoc]{l3doc}
 \usepackage[pass]{geometry}
@@ -114,7 +111,7 @@ Copyright and License
 %   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}^^A
 % }
 %
-% \date{Released 2025-03-12\quad \texttt{v4.1E}}
+% \date{Released 2025-03-18\quad \texttt{v4.2A}}
 %
 % \maketitle
 %
@@ -124,8 +121,7 @@ Copyright and License
 %
 % The \pkg{notebeamer} package provides an easy way to input slides on note
 % pages quickly, developed by \pkg{expl3} based on \pkg{tikz} and
-% \pkg{l3graphics}. It is compatible with \hologo{TeX} Live 2019 or later
-% distributions and supports various compilation methods, such as
+% \pkg{l3graphics}. It supports various compilation methods, such as
 % \hologo{pdfLaTeX}, \hologo{XeLaTeX}, \hologo{ApLaTeX}, \hologo{LuaLaTeX}, etc.
 %
 % \section{Usage}
@@ -191,12 +187,14 @@ Copyright and License
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-03-12} {v4.1E}
+\ProvidesExplPackage {notebeamer} {2025-03-18} {v4.2A}
   {Package provides macros for inputting slides on note papers quickly.}
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\RequirePackage{l3graphics, tikz, tikzpagenodes}
+\cs_if_exist:NF \graphics_include:nn
+  { \RequirePackage{l3graphics} }
+\RequirePackage{tikz, tikzpagenodes}
 %    \end{macrocode}
 %
 % \subsection{User's Interface}

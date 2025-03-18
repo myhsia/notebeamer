@@ -7,8 +7,8 @@ ctanzip      = module
 
 uploadconfig = {
   pkg          = "notebeamer",
-  version      = "v4.1E 2025-03-12",
-  author       = "Mingyu Xia; Lijun Guo",
+  version      = "v4.2A 2025-03-18",
+  author       = "Mingyu Xia",
   uploader     = "Mingyu Xia",
   email        = "myhsia@outlook.com",
   summary      = "Package for printing presentations on notepaper",
@@ -19,9 +19,8 @@ uploadconfig = {
   license      = "lppl1.3c",  
   ctanPath     = "/macros/latex/contrib/notebeamer",
   announcement = [[
-    Version 3.3E released.
-
-    - Updated the l3build workflow.
+    Version 4.2A released.
+    - Ensure compatibility with the recent integrate of l3 graphics to l3kernel.
   ]],
   home         = "https://github.com/myhsia/notebeamer",
   bugtracker   = "https://github.com/myhsia/notebeamer/issues",
