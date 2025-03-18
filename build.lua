@@ -20,7 +20,7 @@ uploadconfig = {
   ctanPath     = "/macros/latex/contrib/notebeamer",
   announcement = [[
     Version 4.2A released.
-    - Ensure compatibility with the recent integrate of l3 graphics to l3kernel.
+    - Ensure compatibility with the recent integrate of l3graphics to l3kernel.
   ]],
   home         = "https://github.com/myhsia/notebeamer",
   bugtracker   = "https://github.com/myhsia/notebeamer/issues",
