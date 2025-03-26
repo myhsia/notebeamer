@@ -1,6 +1,9 @@
 # The test framework itself
 l3build
 #
+# Engine
+pdftex
+#
 # For the doc target and testing l3doc
 alphalph
 amsfonts
