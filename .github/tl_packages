@@ -1,6 +1,6 @@
 # The test framework itself
 l3build
-l3graphics
+l3experimental
 #
 # Engine
 pdftex
