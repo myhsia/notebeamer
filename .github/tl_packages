@@ -18,6 +18,7 @@ epstopdf-pkg
 everysel
 fancyvrb
 framed
+graphicx
 hologo
 hypdoc
 hyperref
