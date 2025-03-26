@@ -32,6 +32,16 @@
 %</internal>
 %
 %<*readme>
+<p align = "left">
+
+<img alt = "CTAN Version"       src = "https://img.shields.io/ctan/v/notebeamer"                                    >
+<img alt = "Actions Status"     src = "https://github.com/myhsia/notebeamer/workflows/Automated%20testing/badge.svg">
+<img alt = "GitHub Repo stars"  src = "https://img.shields.io/github/stars/myhsia/notebeamer"                       >
+<img alt = "GitHub Release"     src = "https://img.shields.io/github/v/release/myhsia/notebeamer"                   >
+<img alt = "GitHub Last Commit" src = "https://img.shields.io/github/last-commit/myhsia/notebeamer"                 >
+
+</p>
+
 The `notebeamer` Package
 ========================
 
@@ -68,6 +78,21 @@ Copyright and License
   This work has the LPPL maintenance status `maintained`.
 
   The Current Maintainer of this work is Mingyu Xia.
+
+<picture>
+  <source
+    media  = "(prefers-color-scheme: dark)"
+    srcset = "https://api.star-history.com/svg?repos=myhsia/notebeamer&type=Date&theme=dark"
+  />
+  <source
+    media  = "(prefers-color-scheme: light)"
+    srcset = "https://api.star-history.com/svg?repos=myhsia/notebeamer&type=Date"
+  />
+  <img
+    alt = "Star History Chart"
+    src = "https://api.star-history.com/svg?repos=myhsia/notebeamer&type=Date"
+  />
+</picture>
 %</readme>
 %
 %<*internal>
@@ -79,9 +104,9 @@ Copyright and License
 \usepackage[pass]{geometry}
 \usepackage{notebeamer}
 \AddToHook{env/function/before}{\vspace*{-.65\baselineskip}}
-\AddToHook{env/syntax/after}{\vspace*{.15\baselineskip}}
+\AddToHook{env/syntax/after}   {\vspace*{.15\baselineskip}}
 \makeatletter
-\def \@key #1{\textcolor{red}{\textbf{\texttt{#1}}}~\normalfont \texttt{=}~}
+\def \@key  #1{\textcolor{red}{\textbf{\texttt{#1}}}~\normalfont \texttt{=}~}
 \def \s@key #1{\textcolor{red}{\textbf{\texttt{#1}}}}
 \DeclareRobustCommand \key {\@ifstar\s@key\@key}
 \def \val #1{\meta{\textup{#1}}}
@@ -111,7 +136,7 @@ Copyright and License
 %   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}^^A
 % }
 %
-% \date{Released 2025-03-20\quad \texttt{v4.2B}}
+% \date{Released 2025-03-26\quad \texttt{v4.2C}}
 %
 % \maketitle
 %
@@ -187,7 +212,7 @@ Copyright and License
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-03-20} {v4.2B}
+\ProvidesExplPackage {notebeamer} {2025-03-26} {v4.2C}
   {Package provides macros for inputting slides on note papers quickly.}
 %    \end{macrocode}
 %

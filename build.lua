@@ -7,7 +7,7 @@ ctanzip      = module
 
 uploadconfig = {
   pkg          = "notebeamer",
-  version      = "v4.2B 2025-03-20",
+  version      = "v4.2C 2025-03-26",
   author       = "Mingyu Xia",
   uploader     = "Mingyu Xia",
   email        = "myhsia@outlook.com",
@@ -19,8 +19,8 @@ uploadconfig = {
   license      = "lppl1.3c",  
   ctanPath     = "/macros/latex/contrib/notebeamer",
   announcement = [[
-    Version 4.2B released.
-    - Updated the manual.
+    Version 4.2C released.
+    - Updated the manual and l3build workflow.
   ]],
   home         = "https://github.com/myhsia/notebeamer",
   bugtracker   = "https://github.com/myhsia/notebeamer/issues",
