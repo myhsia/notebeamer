@@ -4,6 +4,7 @@ l3experimental
 #
 # Engine
 pdftex
+docstrip
 #
 # For the doc target and testing l3doc
 alphalph
