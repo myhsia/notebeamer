@@ -9,6 +9,12 @@ luahbtex
 pdftex
 tex
 #
+# Dependences
+#
+geometry
+ifoddpage
+mwe
+tikzpagenodes
 # For the doc target and testing l3doc
 alphalph
 amsfonts
@@ -27,7 +33,6 @@ epstopdf-pkg
 everysel
 fancyvrb
 framed
-geometry
 hologo
 hypdoc
 hyperref
@@ -36,13 +41,11 @@ listings
 makeindex
 mathpazo
 metalogo
-mwe
 oberdiek
 pgf
 psnfss
 ragged2e
 siunitx
-tikzpagenodes
 times
 tools
 underscore
