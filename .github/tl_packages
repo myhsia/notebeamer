@@ -2,6 +2,11 @@
 l3build
 l3experimental
 #
+# Engine
+latex
+latex-dev
+pdftex
+#
 # For the doc target and testing l3doc
 alphalph
 amsfonts
