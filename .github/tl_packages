@@ -5,7 +5,9 @@ l3experimental
 # Engine
 latex
 latex-bin
+luahbtex
 pdftex
+tex
 #
 # For the doc target and testing l3doc
 alphalph
