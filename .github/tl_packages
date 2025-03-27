@@ -4,6 +4,7 @@ l3experimental
 #
 # Engine
 latex
+latex-bin
 pdftex
 #
 # For the doc target and testing l3doc
