@@ -27,6 +27,7 @@ epstopdf-pkg
 everysel
 fancyvrb
 framed
+geometry
 hologo
 hypdoc
 hyperref
