@@ -1,12 +1,13 @@
-<p align = "left">
-
-<img alt = "CTAN Version"       src = "https://img.shields.io/ctan/v/notebeamer"                                    >
-<img alt = "Actions Status"     src = "https://github.com/myhsia/notebeamer/workflows/Automated%20testing/badge.svg">
-<img alt = "GitHub Repo stars"  src = "https://img.shields.io/github/stars/myhsia/notebeamer"                       >
-<img alt = "GitHub Release"     src = "https://img.shields.io/github/v/release/myhsia/notebeamer"                   >
-<img alt = "GitHub Last Commit" src = "https://img.shields.io/github/last-commit/myhsia/notebeamer"                 >
-
-</p>
+[![CTAN Version](https://img.shields.io/ctan/v/notebeamer)
+](https://ctan.org/pkg/notebeamer)
+[![GitHub Release](https://img.shields.io/github/v/release/myhsia/notebeamer)
+](https://github.com/myhsia/notebeamer/releases/latest)
+[![Actions Status](https://github.com/myhsia/notebeamer/workflows/Automated%20testing/badge.svg)
+](https://github.com/myhsia/notebeamer/actions)
+[![GitHub Repo stars](https://img.shields.io/github/stars/myhsia/notebeamer)
+](https://github.com/myhsia/notebeamer)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/myhsia/notebeamer)
+](https://github.com/myhsia/notebeamer/commits)
 
 The `notebeamer` Package
 ========================
@@ -45,17 +46,5 @@ Copyright and License
 
   The Current Maintainer of this work is Mingyu Xia.
 
-<picture>
-  <source
-    media  = "(prefers-color-scheme: dark)"
-    srcset = "https://api.star-history.com/svg?repos=myhsia/notebeamer&type=Date&theme=dark"
-  />
-  <source
-    media  = "(prefers-color-scheme: light)"
-    srcset = "https://api.star-history.com/svg?repos=myhsia/notebeamer&type=Date"
-  />
-  <img
-    alt = "Star History Chart"
-    src = "https://api.star-history.com/svg?repos=myhsia/notebeamer&type=Date"
-  />
-</picture>
+![Star History Chart
+](https://api.star-history.com/svg?repos=myhsia/notebeamer&type=Date&theme=dark)
