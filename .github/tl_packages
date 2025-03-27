@@ -2,7 +2,7 @@
 l3build
 l3experimental
 #
-# Engine
+# Base
 latex
 latex-bin
 #
@@ -12,6 +12,7 @@ geometry
 ifoddpage
 mwe
 tikzpagenodes
+#
 # For the doc target and testing l3doc
 alphalph
 amsfonts

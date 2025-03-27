@@ -7,7 +7,7 @@ ctanzip      = module
 
 uploadconfig = {
   pkg          = "notebeamer",
-  version      = "v4.2C 2025-03-26",
+  version      = "v4.2C 2025-03-27",
   author       = "Mingyu Xia",
   uploader     = "Mingyu Xia",
   email        = "myhsia@outlook.com",
