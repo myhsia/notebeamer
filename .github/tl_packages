@@ -12,6 +12,7 @@ tex
 # For the doc target and testing l3doc
 alphalph
 amsfonts
+amsmath
 bookmark
 booktabs
 catchfile
