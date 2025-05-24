@@ -92,20 +92,18 @@ Copyright and License
 \documentclass[svgnames, onlydoc]{l3doc}
 \usepackage[pass]{geometry}
 \usepackage{notebeamer}
-\AddToHook{env/function/before}{\vspace*{-.65\baselineskip}}
-\AddToHook{env/syntax/after}   {\vspace*{.15\baselineskip}}
+\AddToHook{env/function/before}{\vspace*{-.7\baselineskip}}
+\AddToHook{env/syntax/after}   {\par\vspace*{.2\baselineskip}}
 \makeatletter
 \def \@key  #1{\textcolor{red}{\textbf{\texttt{#1}}}~\normalfont \texttt{=}~}
 \def \s@key #1{\textcolor{red}{\textbf{\texttt{#1}}}}
 \DeclareRobustCommand \key {\@ifstar\s@key\@key}
 \def \val #1{\meta{\textup{#1}}}
-\def \TFF {true\textbar \textbf{false}}
-\def \TTF {\textbf{true}\textbar false}
-\def \HoLogo@ApLaTeX #1^^A
-  {\HOLOGO@mbox {A\kern -.05em p\kern -.05em \hologo{LaTeX}}}
+\def \HoLogo@ApLaTeX #1{^^A
+  \HOLOGO@mbox {A\kern -.05em p\kern -.05em \hologo{LaTeX}}}
+\makeatother
 \newlist{keyval}{itemize}{10}
 \setlist[keyval]{leftmargin = 0pt, labelsep = 0pt}
-\makeatother
 \makeindex
 \begin{document}
   \DocInput{\jobname.dtx}
@@ -116,16 +114,16 @@ Copyright and License
 % \title{^^A
 %   The \pkg{notebeamer} Package\thanks{^^A
 %     \url{https://github.com/myhsia/notebeamer},
-%     \url{https://ctan.org/pkg/notebeamer}^^A
+%     \url{https://ctan.org/pkg/notebeamer}
 %    }
 % }
 %
 % \author{^^A
 %   Mingyu Xia
-%   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}^^A
+%   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}
 % }
 %
-% \date{Released 2025-03-28\quad \texttt{v4.2D}}
+% \date{Released 2025-05-24\quad \texttt{v4.2E}}
 %
 % \maketitle
 %
@@ -201,7 +199,7 @@ Copyright and License
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-03-28} {v4.2D}
+\ProvidesExplPackage {notebeamer} {2025-05-24} {v4.2E}
   {Package provides macros for inputting slides on note papers quickly.}
 %    \end{macrocode}
 %

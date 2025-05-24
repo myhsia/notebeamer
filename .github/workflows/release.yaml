@@ -1,0 +1,57 @@
+name: Publish New Release
+
+on:
+  push:
+    paths:
+      - "build.lua"
+  workflow_dispatch:
+
+jobs:
+  create-release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v4
+        with:
+          package_file: .github/tl_packages
+      - name: Run l3build and Upload to CTAN
+        run: |
+          l3build ctan
+          yes y | l3build upload y
+      - name: Read version from build.lua
+        run: |
+          MODULE=${GITHUB_REPOSITORY##*/}
+          VERSION=$(grep 'version' build.lua | grep -o '"[^"]*"' | tr -d '"' | cut -d' ' -f1)
+          DATE=$(grep 'version' build.lua | grep -o '"[^"]*"' | tr -d '"' | cut -d' ' -f2)
+          echo "MODULE=$MODULE" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "DATE=$DATE" >> $GITHUB_ENV
+          sed -n '/announcement = \[\[/,/\]\]/{/announcement = \[\[/s///; /\]\]/s///; p;}' build.lua | sed '/^[[:space:]]*$/d' > CHANGELOG
+      - name: Create date tag
+        run: |
+          TAG_NAME="${{ env.DATE }}"
+          ZIP_NAME="${{ env.MODULE }}.zip"
+          RLS_NAME="${{ env.MODULE }} ${{ env.VERSION }}"
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+          echo "RLS_NAME=$RLS_NAME" >> $GITHUB_ENV
+          git fetch --tags
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            echo "Tag $TAG_NAME already exists. Skipping tag creation."
+          else
+            git tag $TAG_NAME
+            git push origin $TAG_NAME
+          fi
+      - name: Create and Publish Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          name: ${{ env.RLS_NAME }}
+          files: ${{ env.ZIP_NAME }}
+          body_path: CHANGELOG
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
