@@ -19,6 +19,8 @@ repository   = "https://github.com/" .. maintainid .. "/" .. module
 announcement = [[
 Version 4.2F released.
 - Updated `build.lua`
+- Updated `README.md`
+- Added LICENSE
 ]]
 summary      = "Package for printing presentations on notepaper"
 description  = [[
