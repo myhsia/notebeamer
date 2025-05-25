@@ -17,24 +17,23 @@ maintainid   = "myhsia"
 email        = "myhsia@outlook.com"
 repository   = "https://github.com/" .. maintainid .. "/" .. module
 announcement = [[
-Version 4.2E released.
-- Updated the manual.
-- `build.lua` is included in the package.
+Version 4.2F released.
+- Updated `build.lua`
 ]]
 summary      = "Package for printing presentations on notepaper"
 description  = [[
-  The notebeamer package provides an easy way to input slides on note pages
-  quickly, developed by expl3 based on TikZ.
+The notebeamer package provides an easy way to input slides on note pages quickly, developed by expl3 based on TikZ.
 ]]
 
 --[==========================================[--
             Pack and Upload To CTAN
          Don't Modify Unless Necessary
 --]==========================================]--
-textfiles    = {"*.md", "LICENSE", "*.lua"}
-excludefiles = {"*~"}
-cleanfiles   = {"*.log", "*.pdf", "*.zip", "*.curlopt"}
 ctanzip      = module
+cleanfiles   = {"*.log", "*.pdf", "*.zip", "*.curlopt"}
+excludefiles = {"*~"}
+exhibitfiles = {"*.md"}
+textfiles    = {"*.md", "LICENSE", "*.lua"}
 
 uploadconfig = {
   pkg          = module,
