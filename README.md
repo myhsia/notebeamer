@@ -15,7 +15,7 @@ Overview
 
 The package provides the `\includebeamer` macro
 
-    \includebeamer [<keyvals>] {<filename>} [<keyvals>]
+    \includebeamer [<keys>] {<filename>} [<keys>]
 
 to set the format that how the slides is arranged on note papers.
 
@@ -26,6 +26,15 @@ Issues
 
 The issue tracker for `notebeamer` is currently located
 [on GitHub](https://github.com/myhsia/notebeamer/issues).
+
+Build status
+------------
+
+This project uses [GitHub Actions](https://github.com/features/actions)
+as a hosted continuous integration service. For each commit, the build status
+is tested using the current release of TeX Live.
+
+_Current build status:_ ![build status](https://github.com/myhsia/notebeamer/actions/workflows/main.yaml/badge.svg?branch=main)
 
 Copyright and License
 ---------------------
@@ -44,6 +53,4 @@ version 2008 or later.
 
 This work has the LPPL maintenance status `maintained'.
 
-The Current Maintainer of this work is Mingyu Xia.
-
-![Star History Chart](https://api.star-history.com/svg?repos=myhsia/notebeamer&type=Date&theme=dark)
+The Current Maintainer of this work is **Mingyu Xia**.

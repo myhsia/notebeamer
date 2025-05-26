@@ -1,6 +1,6 @@
 --[==========================================[--
           L3BUILD FILE FOR NOTEBEAMER
-      Once Pushed After This File Modified
+      Once Pushed With This File Modified
         A New Release Will Be Published
 --]==========================================]--
 
@@ -10,17 +10,16 @@
 --]==========================================]--
 
 module       = "notebeamer"
-version      = "v4.2F 2025-05-25"
+version      = "v4.2G 2025-05-27"
 maintainer   = "Mingyu Xia"
 uploader     = "Mingyu Xia"
 maintainid   = "myhsia"
 email        = "myhsia@outlook.com"
 repository   = "https://github.com/" .. maintainid .. "/" .. module
 announcement = [[
-Version 4.2F released.
+Version 4.2G released.
 - Updated `build.lua`
 - Updated `README.md`
-- Added LICENSE
 ]]
 summary      = "Package for printing presentations on notepaper"
 description  = [[
@@ -32,10 +31,10 @@ The notebeamer package provides an easy way to input slides on note pages quickl
          Don't Modify Unless Necessary
 --]==========================================]--
 ctanzip      = module
-cleanfiles   = {"*.log", "*.pdf", "*.zip", "*.curlopt"}
 excludefiles = {"*~"}
 exhibitfiles = {"*.md"}
 textfiles    = {"*.md", "LICENSE", "*.lua"}
+typesetcmds  = "\\AtBeginDocument{\\csname DisableImplementation\\endcsname}"
 
 uploadconfig = {
   pkg          = module,

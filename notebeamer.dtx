@@ -52,7 +52,7 @@ Overview
 
 The package provides the `\includebeamer` macro
 
-    \includebeamer [<keyvals>] {<filename>} [<keyvals>]
+    \includebeamer [<keys>] {<filename>} [<keys>]
 
 to set the format that how the slides is arranged on note papers.
 
@@ -63,6 +63,15 @@ Issues
 
 The issue tracker for `notebeamer` is currently located
 [on GitHub](https://github.com/myhsia/notebeamer/issues).
+
+Build status
+------------
+
+This project uses [GitHub Actions](https://github.com/features/actions)
+as a hosted continuous integration service. For each commit, the build status
+is tested using the current release of TeX Live.
+
+_Current build status:_ ![build status](https://github.com/myhsia/notebeamer/actions/workflows/main.yaml/badge.svg?branch=main)
 
 Copyright and License
 ---------------------
@@ -81,9 +90,7 @@ version 2008 or later.
 
 This work has the LPPL maintenance status `maintained'.
 
-The Current Maintainer of this work is Mingyu Xia.
-
-![Star History Chart](https://api.star-history.com/svg?repos=myhsia/notebeamer&type=Date&theme=dark)
+The Current Maintainer of this work is **Mingyu Xia**.
 %</readme>
 %
 %<*internal>
@@ -91,16 +98,16 @@ The Current Maintainer of this work is Mingyu Xia.
 %</internal>
 %
 %<*driver>
-\documentclass[svgnames, onlydoc]{l3doc}
+\documentclass[svgnames]{l3doc}
 \usepackage[pass]{geometry}
 \usepackage{notebeamer}
 \AddToHook{env/function/before}{\vspace*{-.7\baselineskip}}
 \AddToHook{env/syntax/after}   {\par\vspace*{.2\baselineskip}}
 \makeatletter
-\def \@key  #1{\textcolor{red}{\textbf{\texttt{#1}}}~\normalfont \texttt{=}~}
-\def \s@key #1{\textcolor{red}{\textbf{\texttt{#1}}}}
-\DeclareRobustCommand \key {\@ifstar\s@key\@key}
-\def \val #1{\meta{\textup{#1}}}
+\def \@key  #1{\textcolor{red}{\texttt{\textbf{#1~=~}}}}
+\def \s@key #1{\textcolor{red}{\texttt{\textup{\textbf{#1}}}}}
+\DeclareDocumentCommand \key {} {\@ifstar\s@key\@key}
+\DeclareCommandCopy \val \meta
 \def \HoLogo@ApLaTeX #1{^^A
   \HOLOGO@mbox {A\kern -.05em p\kern -.05em \hologo{LaTeX}}}
 \makeatother
@@ -116,13 +123,13 @@ The Current Maintainer of this work is Mingyu Xia.
 % \title{^^A
 %   The \pkg{notebeamer} Package\thanks{^^A
 %     \url{https://github.com/myhsia/notebeamer},
-%     \url{https://ctan.org/pkg/notebeamer}
-%    }
+%     \url{https://ctan.org/pkg/notebeamer}^^A
+%    }^^A
 % }
 %
 % \author{^^A
 %   Mingyu Xia
-%   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}
+%   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}^^A
 % }
 %
 % \date{Released 2025-05-25\quad \texttt{v4.2F}}
