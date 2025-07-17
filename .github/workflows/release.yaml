@@ -25,12 +25,12 @@ jobs:
       - name: Read version from build.lua
         run: |
           MODULE=${GITHUB_REPOSITORY##*/}
-          VERSION=$(grep 'version' build.lua | grep -o '"[^"]*"' | tr -d '"' | cut -d' ' -f1)
-          DATE=$(grep 'version' build.lua | grep -o '"[^"]*"' | tr -d '"' | cut -d' ' -f2)
+          VERSION=$(perl -nle 'print $1 if /version\s*=\s*"([^"]+)"/' build.lua)
+          DATE=$(perl -nle 'print $1 if /date\s*=\s*"([^"]+)"/' build.lua)
           echo "MODULE=$MODULE" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "DATE=$DATE" >> $GITHUB_ENV
-          sed -n '/announcement = \[\[/,/\]\]/{/announcement = \[\[/s///; /\]\]/s///; p;}' build.lua | sed '/^[[:space:]]*$/d' > CHANGELOG
+          perl -0777 -ne 'print $1 if /announcement\s*=\s*\[\[(.*?)\]\]/s' build.lua > ANNOUNCEMENT
       - name: Create date tag
         run: |
           TAG_NAME="${{ env.DATE }}"
@@ -52,6 +52,6 @@ jobs:
           tag_name: ${{ env.TAG_NAME }}
           name: ${{ env.RLS_NAME }}
           files: ${{ env.ZIP_NAME }}
-          body_path: CHANGELOG
+          body_path: ANNOUNCEMENT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

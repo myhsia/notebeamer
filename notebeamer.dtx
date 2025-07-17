@@ -100,13 +100,15 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %<*driver>
 \documentclass[svgnames]{l3doc}
 \usepackage[pass]{geometry}
+\linespread{1.05}
 \usepackage{notebeamer}
+\usepackage[mono = false]{libertine}
 \AddToHook{env/function/before}{\vspace*{-.7\baselineskip}}
 \AddToHook{env/syntax/after}   {\par\vspace*{.2\baselineskip}}
 \makeatletter
-\def \@key  #1{\textcolor{red}{\texttt{\textbf{#1~=~}}}}
+\def \@key  #1{\textcolor{red}{\textbf{\texttt{#1}}}\:\texttt{=}\:}
 \def \s@key #1{\textcolor{red}{\texttt{\textup{\textbf{#1}}}}}
-\DeclareDocumentCommand \key {} {\@ifstar\s@key\@key}
+\DeclareDocumentCommand \key s {\IfBooleanTF{#1}\s@key\@key}
 \DeclareCommandCopy \val \meta
 \def \HoLogo@ApLaTeX #1{^^A
   \HOLOGO@mbox {A\kern -.05em p\kern -.05em \hologo{LaTeX}}}
@@ -128,11 +130,14 @@ The Current Maintainer of this work is **Mingyu Xia**.
 % }
 %
 % \author{^^A
-%   Mingyu Xia
-%   \texttt{<\href{mailto:myhsia@outlook.com}{myhsia@outlook.com}>}^^A
+%   Mingyu Xia \texttt{<^^A
+%     \href{mailto:myhsia@outlook.com}{myhsia@outlook.com}^^A
+%     \texorpdfstring{\:\textbar\:}{, }^^A\href{mailto:xiamingyu@westlake.edu.cn}
+%     {xiamingyu@westlake.edu.cn}>^^A
+%   }^^A
 % }
 %
-% \date{Released 2025-05-25\quad \texttt{v4.2F}}
+% \date{Released 2025-07-17\quad \texttt{v4.3A}}
 %
 % \maketitle
 %
@@ -140,7 +145,7 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %
 % \section{Introduction}
 %
-% The \pkg{notebeamer} package provides an easy way to input slides on note
+% The \pkg{notebeamer} package provides an easy way to print slides on note
 % pages quickly, developed by \pkg{expl3} based on \pkg{tikz}.
 % It supports various compilation methods, such as
 % \hologo{pdfLaTeX}, \hologo{XeLaTeX}, \hologo{ApLaTeX}, \hologo{LuaLaTeX}, etc.
@@ -208,8 +213,8 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-05-25} {v4.2F}
-  {Package provides macros for inputting slides on note papers quickly.}
+\ProvidesExplPackage {notebeamer} {2025-07-17} {v4.3A}
+  {Package for printing slides on note pages}
 %    \end{macrocode}
 %
 %    \begin{macrocode}
@@ -421,7 +426,7 @@ The Current Maintainer of this work is **Mingyu Xia**.
               { \seq_item:Nn \l_@@_tmpb_seq { 1 } }
               { \seq_item:Nn \l_@@_tmpb_seq { 2 } }
               { \clist_put_right:Nn #2 {####1} }
-           } { \clist_put_right:Nn #2 {##1} }
+          } { \clist_put_right:Nn #2 {##1} }
       }
   }
 %    \end{macrocode}
