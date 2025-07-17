@@ -34,6 +34,7 @@ framed
 hologo
 hypdoc
 hyperref
+latexmk
 lipsum
 listings
 makeindex
