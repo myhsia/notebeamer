@@ -10,15 +10,16 @@
 --]==========================================]--
 
 module        = "notebeamer"
-version       = "v4.3A"
-date          = "2025-07-17"
+version       = "v4.3B"
+date          = "2025-07-19"
 maintainer    = "Mingyu Xia"
 uploader      = "Mingyu Xia"
 maintainid    = "myhsia"
 email         = "myhsia@outlook.com"
 repository    = "https://github.com/" .. maintainid .. "/" .. module
-announcement  = [[Version 4.3A released.
-- Updated `build.lua`]]
+announcement  = [[Version 4.3B released.
+- Optimized `build.lua` script
+- Updated `README.md`]]
 summary       = "Package for printing slides on note pages"
 description   = "The notebeamer package provides an easy way to print slides on note pages quickly, developed by expl3 based on TikZ."
 
@@ -33,6 +34,7 @@ excludefiles  = {"*~"}
 textfiles     = {"*.md", "LICENSE", "*.lua"}
 typesetcmds   = "\\AtBeginDocument\\DisableImplementation"
 typesetexe    = "latexmk -pdf"
+typesetruns   = 1
 uploadconfig  = {
   pkg          = module,
   version      = version .. " " .. date,
@@ -69,17 +71,20 @@ end
 
 function docinit_hook()
   cp("*.md", unpackdir, currentdir)
-  for _,i in ipairs(installfiles) do
-    errorlevel = cp(i, unpackdir, typesetdir)
-  end
   return 0
 end
 function tex(file,dir,cmd)
   dir = dir or "."
   cmd = cmd or typesetexe
-  if os_type == "windows" then
-    return run(dir, cmd .. " -usepretex=\"" .. typesetcmds .. "' -e '$makeindex = q/makeindex -s " .. indexstyle .. " %O %S/\" " .. file)
+  if os.getenv("WINDIR") ~= nil or os.getenv("COMSPEC") ~= nil then
+    upretex_aux = "-usepretex=\"" .. typesetcmds .. "\""
+    makeidx_aux = "-e \"$makeindex=q/makeindex -s " .. indexstyle .. " %O %S/\""
+    sandbox_aux = "set \"TEXINPUTS=../unpacked;%TEXINPUTS%;\" &&"
   else
-    return run(dir, cmd .. " -usepretex='" .. typesetcmds .. "' -e '$makeindex = q/makeindex -s " .. indexstyle .. " %O %S/' " .. file)
+    upretex_aux = "-usepretex=\'" .. typesetcmds .. "\'"
+    makeidx_aux = "-e \'$makeindex=q/makeindex -s " .. indexstyle .. " %O %S/\'"
+    sandbox_aux = "TEXINPUTS=\"../unpacked:$(kpsewhich -var-value=TEXINPUTS):\""
   end
+  return run(dir, sandbox_aux .. " " .. cmd         .. " " ..
+                  upretex_aux .. " " .. makeidx_aux .. " " .. file)
 end

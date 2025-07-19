@@ -1,8 +1,8 @@
 [![CTAN Version](https://img.shields.io/ctan/v/notebeamer)](https://ctan.org/pkg/notebeamer)
 [![GitHub Release](https://img.shields.io/github/v/release/myhsia/notebeamer)](https://github.com/myhsia/notebeamer/releases/latest)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/myhsia/notebeamer)](https://github.com/myhsia/notebeamer/commits)
 [![Actions Status](https://github.com/myhsia/notebeamer/workflows/Automated%20testing/badge.svg)](https://github.com/myhsia/notebeamer/actions)
 [![GitHub Repo stars](https://img.shields.io/github/stars/myhsia/notebeamer)](https://github.com/myhsia/notebeamer)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/myhsia/notebeamer)](https://github.com/myhsia/notebeamer/commits)
 
 The `notebeamer` Package
 ========================
