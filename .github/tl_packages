@@ -42,6 +42,8 @@ makeindex
 mathpazo
 metalogo
 oberdiek
+pdfpages
+pdflscape
 pgf
 psnfss
 ragged2e

@@ -98,10 +98,9 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %</internal>
 %
 %<*driver>
-\documentclass[svgnames]{l3doc}
+\documentclass{l3doc}
 \usepackage[pass]{geometry}
-\linespread{1.05}
-\usepackage{notebeamer}
+\usepackage{notebeamer, pdfpages}
 \usepackage[mono = false]{libertine}
 \AddToHook{env/function/before}{\vspace*{-.7\baselineskip}}
 \AddToHook{env/syntax/after}   {\par\vspace*{.2\baselineskip}}
@@ -110,6 +109,8 @@ The Current Maintainer of this work is **Mingyu Xia**.
 \def \s@key #1{\textcolor{red}{\texttt{\textup{\textbf{#1}}}}}
 \DeclareDocumentCommand \key s {\IfBooleanTF{#1}\s@key\@key}
 \DeclareCommandCopy \val \meta
+\def \TFF {true\textup{\textbar\textbf{false}}}
+\def \TTF {\textup{\textbf{true}\textbar}false}
 \def \HoLogo@ApLaTeX #1{^^A
   \HOLOGO@mbox {A\kern -.05em p\kern -.05em \hologo{LaTeX}}}
 \makeatother
@@ -137,7 +138,7 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %   }^^A
 % }
 %
-% \date{Released 2025-07-19\quad \texttt{v4.3B}}
+% \date{Released 2025-07-21\quad \texttt{v4.4A}}
 %
 % \maketitle
 %
@@ -177,32 +178,30 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %     \item [\key{pages}] \val{comma-separated list} can select pages to insert.
 %     The list could contain ranges of page numbers.
 %     (Default: |1|).
+%     \item [\key{lines}] \val{int} can set the number of lines on every page.
+%     \item [\key{lineno}] \val{\TFF} can set whether to show the line numbers
+%     (Default: |false|).
 %     \item [\key{lhead, rhead}] \val{str} can set the left / right header of
 %     the pages.
 %   \end{keyval}
 % \end{function}
+% 
+% \section{Working Example}
 %
-% Additionally, \cs[no-index]{newgeometry} could be used for assistance. Such as
-% \begin{verbatim}
-%   \newgeometry{margin = .75in}
-%   \includebeamer
-%     [ nup = 4, pages = {2-4, 6},  lines = 32, ratio = .28,
-%       Navy,    lhead = Chapter 1, rhead = Page~\thepage
-%     ] { example-image-a4-numbered.pdf }
-% \end{verbatim}
-% \newgeometry{margin = .75in}
-% \includebeamer
-%   [ nup = 4, pages = {2-4, 6},  lines = 32, ratio = .28,
-%     Navy,    lhead = Chapter 1, rhead = Page~\thepage
-%   ] { example-image-a4-numbered.pdf }
+% Macros like \cs[no-index]{newgeometry}, and \cs[no-index]{pagecolor}, etc.,
+% could be used for assistance.
 %
+% \verbatiminput{notebeamer-demo.tex}
+% \noindent
+% The effect of the above example is exhibited on the next page.
+%
+% \includepdf[pages = -, nup = 2x2, frame]{notebeamer-demo.pdf}
+% 
 % \end{documentation}
 %
 % \begin{implementation}
 %
 % \section{The Source Code}
-%
-% \linespread{1.1}
 %
 %    \begin{macrocode}
 %<*package>
@@ -213,7 +212,7 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-07-19} {v4.3B}
+\ProvidesExplPackage {notebeamer} {2025-07-21} {v4.4A}
   {Package for printing slides on note pages}
 %    \end{macrocode}
 %
@@ -247,20 +246,23 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %    \begin{macrocode}
 \keys_define:nn { notebeamer / includebeamer }
   {
-    color   .tl_set:N  = \l_@@_include_color_tl,
-      color .initial:n = black,
-    pages   .tl_set:N  = \l_@@_include_pages_tl,
-      pages .initial:n = 1,
-    nup     .int_set:N = \l_@@_include_nup_int,
-      nup   .initial:n = 3,
-    lines   .int_set:N = \l_@@_include_lines_int,
-    ratio   .fp_set:N  = \l_@@_include_ratio_fp,
-      ratio .initial:n = .5,
-    sep     .dim_set:N = \l_@@_include_sep_dim,
-      sep   .initial:n = 2ex,
-    lhead   .tl_set:N  = \l_@@_include_lhead_tl,
-    rhead   .tl_set:N  = \l_@@_include_rhead_tl,
-    unknown .code:n    = \tl_if_novalue:nF {#1}
+    color   .tl_set:N   = \l_@@_include_color_tl,
+      color .initial:n  = black,
+    pages   .tl_set:N   = \l_@@_include_pages_tl,
+      pages .initial:n  = 1,
+    nup     .int_set:N  = \l_@@_include_nup_int,
+      nup   .initial:n  = 3,
+    lines   .int_set:N  = \l_@@_include_lines_int,
+    lineno  .bool_set:N = \l_@@_include_lineno_bool,
+      lineno .initial:n = false,
+      lineno .default:n = true,
+    ratio   .fp_set:N   = \l_@@_include_ratio_fp,
+      ratio .initial:n  = .5,
+    sep     .dim_set:N  = \l_@@_include_sep_dim,
+      sep   .initial:n  = 2ex,
+    lhead   .tl_set:N   = \l_@@_include_lhead_tl,
+    rhead   .tl_set:N   = \l_@@_include_rhead_tl,
+    unknown .code:n     = \tl_if_novalue:nF {#1}
       { \tl_set_eq:NN \l_@@_include_color_tl \l_keys_key_tl }
   }
 %    \end{macrocode}
@@ -315,7 +317,7 @@ The Current Maintainer of this work is **Mingyu Xia**.
         \fp_eval:n
           { ceil
               ( \clist_count:N \l_@@_tmpa_clist/
-                  \l_@@_include_nup_int,0
+                  \l_@@_include_nup_int, 0
               ) - 1
           }
       }
@@ -377,27 +379,42 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %    \begin{macrocode}
 \cs_new_protected_nopar:Nn \@@_empty_note_aux:
   {
-    \tikzpicture [ remember~picture, overlay ]
-      \draw [ very~thick, \l_@@_include_color_tl!80 ]
+    \begin { tikzpicture } [ remember~picture, overlay ]
+      \draw [ very~thick, \l_@@_include_color_tl, opacity = .8 ]
         (current~page~text~area.north~west) --
         (current~page~text~area.north~east)
        node [ at~start, above~right, font = \Large \bfseries ]
         { \l_@@_include_lhead_tl }
        node [ above~left, font = \Large \bfseries ]
         { \l_@@_include_rhead_tl };
-      \draw [ very~thick, \l_@@_include_color_tl!80 ]
+      \draw [ very~thick, \l_@@_include_color_tl, opacity = .8 ]
         (current~page~text~area.south~west) --
         (current~page~text~area.south~east);
       \int_step_inline:nn { \l_@@_include_lines_int - 1 }
         {
-          \draw [ thick, \l_@@_include_color_tl!60 ]
+          \draw [ thick, \l_@@_include_color_tl, opacity = .6 ]
             ([xshift = \l_@@_include_ratio_dim,
               yshift = -\textheight/\l_@@_include_lines_int * ##1
              ]current~page~text~area.north~west) --++
             (\dim_eval:n { \textwidth - \l_@@_include_ratio_dim },0);
+          \bool_if:nT \l_@@_include_lineno_bool
+            {
+              \node [ font = \footnotesize, \l_@@_include_color_tl,
+                      opacity = .4, right ] at
+                ([xshift = \textwidth,
+                  yshift = -\textheight/\l_@@_include_lines_int * (##1 - .5)
+                 ]current~page~text~area.north~west)
+                { \int_eval:n { ##1 } };
+            }
         }
-    \endtikzpicture
-    \pagestyle{empty}
+      \node [ font = \footnotesize, \l_@@_include_color_tl,
+              opacity = .4, right ] at
+        ([xshift = \textwidth,
+          yshift = -\textheight + \textheight/\l_@@_include_lines_int * .5
+         ]current~page~text~area.north~west)
+        { \int_eval:n { \l_@@_include_lines_int } };
+    \end { tikzpicture }
+    \pagestyle { empty }
   }
 %    \end{macrocode}
 % \end{macro}

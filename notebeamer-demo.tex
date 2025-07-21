@@ -1,0 +1,25 @@
+\documentclass[a4paper]{article}
+
+\usepackage{libertine, geometry, notebeamer}
+
+\begin{document}
+
+\newgeometry{margin = .75in}
+\pagecolor{black!80}
+\includebeamer
+  [ nup = 4,  pages = {2-4, 8-10},  lines = 32, ratio = .28,
+    white!80, lhead = Chapter 1, lineno, rhead = Page~\thepage
+  ] { example-image-a4-numbered.pdf }
+
+\pagecolor{white}
+\includebeamer
+  [ nup = 5,  pages = 1-5,  lines = 32, ratio = .48,
+    lhead = Chapter 1, lineno, rhead = Page~\thepage
+  ] { example-image-duck.pdf }
+
+\includebeamer
+  [ nup = 2,  pages = -,  lines = 32, ratio = .54,
+    lhead = Chapter 1, lineno, rhead = Page~\thepage
+  ] { example-image-a4.pdf }
+
+\end{document}

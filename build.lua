@@ -9,32 +9,34 @@
              Do Check Before Push
 --]==========================================]--
 
-module        = "notebeamer"
-version       = "v4.3B"
-date          = "2025-07-19"
-maintainer    = "Mingyu Xia"
-uploader      = "Mingyu Xia"
-maintainid    = "myhsia"
-email         = "myhsia@outlook.com"
-repository    = "https://github.com/" .. maintainid .. "/" .. module
-announcement  = [[Version 4.3B released.
+module              = "notebeamer"
+version             = "v4.4A"
+date                = "2025-07-21"
+maintainer          = "Mingyu Xia"
+uploader            = "Mingyu Xia"
+maintainid          = "myhsia"
+email               = "myhsia@outlook.com"
+repository          = "https://github.com/" .. maintainid .. "/" .. module
+announcement        = [[Version 4.4A released.
 - Optimized `build.lua` script
-- Updated `README.md`]]
-summary       = "Package for printing slides on note pages"
-description   = "The notebeamer package provides an easy way to print slides on note pages quickly, developed by expl3 based on TikZ."
+- Supports `lineno` option: Print line numbers on note pages]]
+summary             = "Package for printing slides on note pages"
+description         = "The notebeamer package provides an easy way to print slides on note pages quickly, developed by expl3 based on TikZ."
 
 --[==========================================[--
           Build, Pack, Tag, and Upload
          Do not Modify Unless Necessary
 --]==========================================]--
 
-ctanzip       = module
-cleanfiles    = {"*log", "*.pdf", "*.zip", "*.curlopt"}
-excludefiles  = {"*~"}
-textfiles     = {"*.md", "LICENSE", "*.lua"}
-typesetcmds   = "\\AtBeginDocument\\DisableImplementation"
-typesetexe    = "latexmk -pdf"
-typesetruns   = 1
+ctanzip             = module
+cleanfiles          = {"*log", "*.pdf", "*.zip", "*.curlopt"}
+excludefiles        = {"*~"}
+textfiles           = {"*.md", "LICENSE", "*.lua"}
+typesetcmds         = "\\AtBeginDocument{\\ifdefined\\DisableImplementation" ..
+                      "\\DisableImplementation\\fi}"
+typesetdemofiles    = {module .. "-demo.tex"}
+typesetexe          = "latexmk -pdf"
+typesetruns         = 1
 uploadconfig  = {
   pkg          = module,
   version      = version .. " " .. date,
@@ -70,7 +72,7 @@ end
 --[== "Hacks" to `l3build` | Do not Modify ==]--
 
 function docinit_hook()
-  cp("*.md", unpackdir, currentdir)
+  cp(ctanreadme, unpackdir, currentdir)
   return 0
 end
 function tex(file,dir,cmd)
