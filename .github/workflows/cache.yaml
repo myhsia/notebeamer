@@ -9,8 +9,8 @@
 name: Keep TeX Live cache up-to-date
 on:
   schedule:
-    # Run every tuesday and saturday at 09:41. The time has been chosen at random.
-    - cron: '41 9 * * 3,5'
+    # Runs at 09:41 UTC daily.
+    - cron: '41 9 * * *'
 
 jobs:
   cache:
