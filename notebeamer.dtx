@@ -98,22 +98,28 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %</internal>
 %
 %<*driver>
-\documentclass{l3doc}
-\usepackage[pass]{geometry}
+\documentclass[svgnames]{l3doc}
 \usepackage{notebeamer, pdfpages}
-\usepackage[mono = false]{libertine}
-\AddToHook{env/function/before}{\vspace*{-.7\baselineskip}}
-\AddToHook{env/syntax/after}   {\par\vspace*{.2\baselineskip}}
-\makeatletter
-\def \@key  #1{\textcolor{red}{\textbf{\texttt{#1}}}\:\texttt{=}\:}
-\def \s@key #1{\textcolor{red}{\texttt{\textup{\textbf{#1}}}}}
-\DeclareDocumentCommand \key s {\IfBooleanTF{#1}\s@key\@key}
+\usepackage[osf, mono = false]{libertine}
+\AddToHook{env/function/before}{\vspace*{-.5\baselineskip}}
+\ExplSyntaxOn \makeatletter
+\DeclareDocumentCommand \key { s m }
+  {
+    \IfBooleanTF {#1} { \textcolor{red}{\ttfamily \bfseries #2} }
+      {
+        \ttfamily
+        \seq_set_from_clist:Nn \l_tmpa_seq {#2}
+        \seq_set_map:NNn \l_tmpb_seq \l_tmpa_seq
+          { \exp_not:n { \textcolor{red}{\bfseries ##1} } }
+        \seq_use:Nn \l_tmpb_seq { ,~ } \:=\:
+      }
+  }
 \DeclareCommandCopy \val \meta
-\def \TFF {true\textup{\textbar\textbf{false}}}
-\def \TTF {\textup{\textbf{true}\textbar}false}
-\def \HoLogo@ApLaTeX #1{^^A
+\def \TFF {true\textup{\textbar\underline{\textbf{false}}}}
+\def \TTF {\textup{\underline{\textbf{true}}\textbar}false}
+\def \HoLogo@ApLaTeX #1{
   \HOLOGO@mbox {A\kern -.05em p\kern -.05em \hologo{LaTeX}}}
-\makeatother
+\makeatother \ExplSyntaxOff
 \newlist{keyval}{itemize}{10}
 \setlist[keyval]{leftmargin = 0pt, labelsep = 0pt}
 \makeindex
@@ -132,13 +138,11 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %
 % \author{^^A
 %   Mingyu Xia \texttt{<^^A
-%     \href{mailto:myhsia@outlook.com}{myhsia@outlook.com}^^A
-%     \texorpdfstring{\:\textbar\:}{, }^^A\href{mailto:xiamingyu@westlake.edu.cn}
-%     {xiamingyu@westlake.edu.cn}>^^A
+%     \href{mailto:xiamingyu@westlake.edu.cn}{xiamingyu@westlake.edu.cn}>^^A
 %   }^^A
 % }
 %
-% \date{Released 2025-07-21\quad \texttt{v4.4A}}
+% \date{Released 2025-08-19\quad \texttt{v4.5A}}
 %
 % \maketitle
 %
@@ -212,7 +216,7 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-07-21} {v4.4A}
+\ProvidesExplPackage {notebeamer} {2025-08-19} {v4.5A}
   {Package for printing slides on note pages}
 %    \end{macrocode}
 %
@@ -237,15 +241,16 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %    \end{macrocode}
 % \begin{variable}
 %   {
-%     \l_@@_include_color_tl , \l_@@_include_pages_tl  ,
-%     \l_@@_include_nup_int  , \l_@@_include_lines_int ,
-%     \l_@@_include_ratio_fp , \l_@@_include_sep_dim   ,
-%     \l_@@_include_lhead_tl , \l_@@_include_rhead_tl
+%     \l_@@_include_pos_tl,   \l_@@_include_color_tl ,  \l_@@_include_pages_tl,
+%     \l_@@_include_nup_int,  \l_@@_include_lines_int,  \l_@@_include_ratio_fp,
+%     \l_@@_include_sep_dim,  \l_@@_include_lhead_tl,   \l_@@_include_rhead_tl
 %   }
 %   Key--value definitions for the \cs{includebeamer} command.
 %    \begin{macrocode}
 \keys_define:nn { notebeamer / includebeamer }
   {
+    pos     .tl_set:N   = \l_@@_include_pos_tl,
+      pos   .initial:n  = left,
     color   .tl_set:N   = \l_@@_include_color_tl,
       color .initial:n  = black,
     pages   .tl_set:N   = \l_@@_include_pages_tl,

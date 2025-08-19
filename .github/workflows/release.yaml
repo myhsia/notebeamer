@@ -18,6 +18,18 @@ jobs:
         uses: zauguin/install-texlive@v4
         with:
           package_file: .github/tl_packages
+      - name: tag
+        run: |
+          l3build tag
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          if [[ -n $(git status --porcelain) ]]; then
+            git add .
+            git commit -m "Automatic tagging by l3build"
+            git push origin main
+          else
+            echo "No changes to commit."
+          fi
       - name: Run l3build and Upload to CTAN
         run: |
           l3build ctan

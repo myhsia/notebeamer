@@ -10,16 +10,16 @@
 --]==========================================]--
 
 module              = "notebeamer"
-version             = "v4.4A"
-date                = "2025-07-21"
+version             = "v4.5A"
+date                = "2025-08-19"
 maintainer          = "Mingyu Xia"
 uploader            = "Mingyu Xia"
 maintainid          = "myhsia"
 email               = "myhsia@outlook.com"
 repository          = "https://github.com/" .. maintainid .. "/" .. module
-announcement        = [[Version 4.4A released.
-- Optimized `build.lua` script
-- Supports `lineno` option: Print line numbers on note pages]]
+announcement        = [[Version 4.5A released.
+- Initialed the `pos` key.
+- Updated the manual.]]
 summary             = "Package for printing slides on note pages"
 description         = "The notebeamer package provides an easy way to print slides on note pages quickly, developed by expl3 based on TikZ."
 
@@ -48,7 +48,7 @@ uploadconfig  = {
   license      = "lppl1.3c",  
   ctanPath     = "/macros/latex/contrib/" .. module,
   announcement = announcement,
-  home         = repository,
+  home         = "https://github.com/" .. maintainid,
   bugtracker   = repository .. "/issues",
   support      = repository .. "/issues",
   repository   = repository,
