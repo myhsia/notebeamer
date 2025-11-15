@@ -10,16 +10,14 @@
 --]==========================================]--
 
 module              = "notebeamer"
-version             = "v4.5A"
-date                = "2025-08-19"
+version             = "v4.5B"
+date                = "2025-11-15"
 maintainer          = "Mingyu Xia"
 uploader            = "Mingyu Xia"
 maintainid          = "myhsia"
 email               = "myhsia@outlook.com"
 repository          = "https://github.com/" .. maintainid .. "/" .. module
-announcement        = [[Version 4.5A released.
-- Initialed the `pos` key.
-- Updated the manual.]]
+announcement        = ""
 summary             = "Package for printing slides on note pages"
 description         = "The notebeamer package provides an easy way to print slides on note pages quickly, developed by expl3 based on TikZ."
 
