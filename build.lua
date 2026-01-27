@@ -10,8 +10,8 @@
 --]==========================================]--
 
 module              = "notebeamer"
-version             = "v4.5B"
-date                = "2025-11-15"
+version             = "v4.6A"
+date                = "2026-01-31"
 maintainer          = "Mingyu Xia"
 uploader            = "Mingyu Xia"
 maintainid          = "myhsia"
