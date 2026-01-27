@@ -37,6 +37,7 @@ underscore
 xcolor
 #
 # Required
+geometry
 pgf
 #
 # Preamble
