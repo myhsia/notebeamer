@@ -45,6 +45,7 @@ geometry
 pgf
 #
 # Preamble
+duckuments
 libertine
 ### Required by `pdfpages`
 pdflscape
