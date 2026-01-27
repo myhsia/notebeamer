@@ -17,7 +17,6 @@ uploader            = "Mingyu Xia"
 maintainid          = "myhsia"
 email               = "myhsia@outlook.com"
 repository          = "https://github.com/" .. maintainid .. "/" .. module
-announcement        = ""
 summary             = "Package for printing slides on note pages"
 description         = "The notebeamer package provides an easy way to print slides on note pages quickly, developed by expl3 based on TikZ."
 
@@ -27,39 +26,41 @@ description         = "The notebeamer package provides an easy way to print slid
 --]==========================================]--
 
 ctanzip             = module
-cleanfiles          = {"*log", "*.pdf", "*.zip", "*.curlopt"}
+cleanfiles          = {"*.log", "*.pdf", "*.zip", "*.curlopt"}
 excludefiles        = {"*~"}
 textfiles           = {"*.md", "LICENSE", "*.lua"}
-typesetcmds         = "\\AtBeginDocument{\\ifdefined\\DisableImplementation" ..
-                      "\\DisableImplementation\\fi}"
 typesetdemofiles    = {module .. "-demo.tex"}
 typesetexe          = "latexmk -pdf"
 typesetruns         = 1
 uploadconfig  = {
-  pkg          = module,
-  version      = version .. " " .. date,
-  author       = maintainer,
-  uploader     = uploader,
-  email        = email,
-  summary      = summary,
-  description  = description,
-  license      = "lppl1.3c",  
-  ctanPath     = "/macros/latex/contrib/" .. module,
-  announcement = announcement,
-  home         = "https://github.com/" .. maintainid,
-  bugtracker   = repository .. "/issues",
-  support      = repository .. "/issues",
-  repository   = repository,
-  development  = "https://github.com/" .. maintainid,
-  update       = true
+  announcement_file = "announcement.md",
+  pkg               = module,
+  version           = version .. " " .. date,
+  author            = maintainer,
+  uploader          = uploader,
+  email             = email,
+  summary           = summary,
+  description       = description,
+  license           = "lppl1.3c",  
+  ctanPath          = "/macros/latex/contrib/" .. module,
+  announcement      = announcement,
+  home              = "https://github.com/" .. maintainid,
+  bugtracker        = repository .. "/issues",
+  support           = repository .. "/issues",
+  repository        = repository,
+  development       = "https://github.com/" .. maintainid,
+  update            = true
 }
 function update_tag(file, content, tagname, tagdate)
   tagname = version
   tagdate = date
   if string.match(file, "%.dtx$") then
     content = string.gsub(content,
-      "\\ProvidesExplPackage {" .. module .. "} %{[^}]+%} %{[^}]+%}[\r\n%s]*%{[^}]+%}",
-      "\\ProvidesExplPackage {" .. module .. "} {" .. tagdate .. "} {" .. tagname .. "}\n  {" .. summary .. "}")
+      "\\def \\ntbm@date    %{[^}]+%}",
+      "\\def \\ntbm@date    {" .. tagdate .. "}")
+    content = string.gsub(content,
+      "\\def \\ntbm@version %{[^}]+%}",
+      "\\def \\ntbm@version {" .. tagname .. "}")
     content = string.gsub(content,
       "\\date{Released %d+%-%d+%-%d+\\quad \\texttt{v([%d%.A-Z]+)}}",
       "\\date{Released " .. tagdate .. "\\quad \\texttt{" .. tagname .. "}}")

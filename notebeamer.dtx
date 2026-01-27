@@ -214,13 +214,14 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage {notebeamer} {2025-11-15} {v4.5B}
+\def \ntbm@date    {2025-11-15}
+\def \ntbm@version {v4.5B}
+\ProvidesExplPackage {notebeamer} {\ntbm@date} {\ntbm@version}
   {Package for printing slides on note pages}
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\cs_if_exist:NF \graphics_include:nn
-  { \RequirePackage{l3graphics} }
+\cs_if_exist:NF \graphics_include:nn { \RequirePackage{l3graphics} }
 \RequirePackage{tikz, tikzpagenodes}
 %    \end{macrocode}
 %

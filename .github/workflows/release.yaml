@@ -3,7 +3,7 @@ name: Publish New Release
 on:
   push:
     paths:
-      - "build.lua"
+      - "announcement.md"
   workflow_dispatch:
 
 jobs:
@@ -36,7 +36,7 @@ jobs:
           yes y | l3build upload
       - name: Read version from build.lua
         run: |
-          MODULE=${GITHUB_REPOSITORY##*/}
+          MODULE=$(perl -nle 'print $1 if /module\s*=\s*"([^"]+)"/' build.lua)
           VERSION=$(perl -nle 'print $1 if /version\s*=\s*"([^"]+)"/' build.lua)
           DATE=$(perl -nle 'print $1 if /date\s*=\s*"([^"]+)"/' build.lua)
           echo "MODULE=$MODULE" >> $GITHUB_ENV
