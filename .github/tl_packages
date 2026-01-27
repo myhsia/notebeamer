@@ -1,5 +1,6 @@
 # Shell
 l3build
+latex-bin
 latexmk
 makeindex
 pdftex
