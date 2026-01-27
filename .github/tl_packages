@@ -38,6 +38,7 @@ xcolor
 #
 # Required
 ### Required by `geometry`
+epstopdf-pkg
 ifoddpage
 ###
 geometry
