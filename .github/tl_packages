@@ -37,6 +37,9 @@ underscore
 xcolor
 #
 # Required
+### Required by `geometry`
+ifoddpage
+###
 geometry
 pgf
 #
