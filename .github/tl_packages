@@ -47,6 +47,7 @@ pgf
 # Preamble
 duckuments
 libertine
+mwe
 ### Required by `pdfpages`
 pdflscape
 ###
