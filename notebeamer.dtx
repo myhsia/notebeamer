@@ -101,8 +101,8 @@ The Current Maintainer of this work is **Mingyu Xia**.
 \documentclass[svgnames]{l3doc}
 \usepackage{notebeamer, pdfpages}
 \usepackage[osf, mono = false]{libertine}
-\AddToHook{env/function/before}{\vspace*{-.5\baselineskip}}
 \ExplSyntaxOn \makeatletter
+\newcommand \mail[1]{\href{mailto:#1}{\ttfamily #1}}
 \DeclareDocumentCommand \key { s m }
   {
     \IfBooleanTF {#1} { \textcolor{red}{\ttfamily \bfseries #2} }
@@ -115,8 +115,10 @@ The Current Maintainer of this work is **Mingyu Xia**.
       }
   }
 \DeclareCommandCopy \val \meta
-\def \TFF {true\textup{\textbar\underline{\textbf{false}}}}
-\def \TTF {\textup{\underline{\textbf{true}}\textbar}false}
+\def \TTF {true\textup{\textbar\textbf{false}\makebox[0pt][r]{^^A
+  \underline {\phantom{\bfseries true}\kern-0.1em}}}}
+\def \TFF {\textup{\textbf{true}\makebox[0pt][r]{^^A
+  \underline {\phantom{\bfseries true}\kern-0.1em}}\textbar}false}
 \makeatother \ExplSyntaxOff
 \newlist{keyval}{itemize}{10}
 \setlist[keyval]{leftmargin = 0pt, labelsep = 0pt}
@@ -134,13 +136,9 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %    }^^A
 % }
 %
-% \author{^^A
-%   Mingyu Xia \texttt{<^^A
-%     \href{mailto:xiamingyu@westlake.edu.cn}{xiamingyu@westlake.edu.cn}>^^A
-%   }^^A
-% }
+% \author{Mingyu Xia\thanks{\mail{xiamingyu@westlake.edu.cn}}}
 %
-% \date{Released 2025-11-15\quad \texttt{v4.5B}}
+% \date{Released 2026-01-31\quad \texttt{v4.6A}}
 %
 % \maketitle
 %
@@ -214,8 +212,8 @@ The Current Maintainer of this work is **Mingyu Xia**.
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\def \ntbm@date    {2025-11-15}
-\def \ntbm@version {v4.5B}
+\def \ntbm@date    {2026-01-31}
+\def \ntbm@version {v4.6A}
 \ProvidesExplPackage {notebeamer} {\ntbm@date} {\ntbm@version}
   {Package for printing slides on note pages}
 %    \end{macrocode}

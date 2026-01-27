@@ -1,55 +1,47 @@
-# The test framework itself
+# Shell
 l3build
-l3experimental
+latexmk
+makeindex
+pdftex
+xetex
 #
-# Base
+# l3doc
+l3kernel
+## Base
 latex
-latex-bin
-#
-# Dependences
-#
-geometry
-ifoddpage
-mwe
-tikzpagenodes
-#
-# For the doc target and testing l3doc
+## Required
+graphics
+tools
+psnfss
+## Generic
+hologo
+## Contrib
 alphalph
-amsfonts
 amsmath
-bookmark
+amsfonts
 booktabs
-catchfile
 cm-super
 colortbl
 csquotes
-duckuments
-dvips
-ec
 enumitem
-epstopdf
-epstopdf-pkg
-everysel
 fancyvrb
-framed
-hologo
 hypdoc
 hyperref
-latexmk
-libertine
-lipsum
-listings
-makeindex
-mathpazo
-metalogo
+lm
+manfnt
+metafont
+mfware
 oberdiek
-pdfpages
-pdflscape
-pgf
-psnfss
-ragged2e
-siunitx
-times
-tools
 underscore
-units
+xcolor
+#
+# Required
+pgf
+#
+# Preamble
+libertine
+### Required by `pdfpages`
+pdflscape
+###
+pdfpages
+tikzpagenodes
