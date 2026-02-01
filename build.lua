@@ -11,7 +11,7 @@
 
 module              = "notebeamer"
 version             = "v4.6A"
-date                = "2026-01-31"
+date                = "2026-02-07"
 maintainer          = "Mingyu Xia"
 uploader            = "Mingyu Xia"
 maintainid          = "myhsia"
