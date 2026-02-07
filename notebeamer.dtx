@@ -107,11 +107,12 @@ The Current Maintainer of this work is **Mingyu Xia**.
   {
     \IfBooleanTF {#1} { \textcolor{red}{\ttfamily \bfseries #2} }
       {
-        \ttfamily
+        \group_begin: \ttfamily
         \seq_set_from_clist:Nn \l_tmpa_seq {#2}
         \seq_set_map:NNn \l_tmpb_seq \l_tmpa_seq
           { \exp_not:n { \textcolor{red}{\bfseries ##1} } }
         \seq_use:Nn \l_tmpb_seq { ,~ } \:=\:
+        \group_end:
       }
   }
 \DeclareCommandCopy \val \meta
